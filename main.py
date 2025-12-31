@@ -25,6 +25,7 @@ col1,col2,col3=st.columns([0.25,0.5,0.25])
 #=====================
 
 with st.sidebar:
+
     st.title('🏂 US Population Dashboard')
 
     list_year=df['year'].unique()[::-1]
@@ -83,13 +84,17 @@ with col2:
     st.write('### Total Population')
 
     # first graph
-    fig=px.choropleth(current_pop,locations='states_code',color='population',locationmode='USA-states',scope='usa',color_continuous_scale='viridis',labels={"population":"population"})
-    fig.update_layout(height=300, margin={"r":0,"t":0,"l":0,"b":0})
+    fig=px.choropleth(current_pop,locations='states_code',color='population',locationmode='USA-states',scope='usa',color_continuous_scale='viridis',
+                      labels={"population":"population"})
+    fig.update_geos(bgcolor='gray')
+    fig.update_layout(height=360, margin={"r":0,"t":0,"l":0,"b":0})
     st.plotly_chart(fig)
 
     # second graph
     pivot_tab=df.pivot(index='year',columns='states',values='population')
-    heatmap=px.imshow(pivot_tab,labels=dict(x='states',y='year',color='Max of population'))
+    heatmap=px.imshow(pivot_tab,labels=dict(x='states',y='year',color='Max of population'),text_auto=True)
+    #fig.update_traces(xgap=2,ygap=4)
+    #fig.update_layout(plot_bgcolor='black')
     st.plotly_chart(heatmap)
 
 
