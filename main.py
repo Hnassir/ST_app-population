@@ -16,7 +16,7 @@ def num_format(num):
 
 st.title('US Population',text_alignment='center')
 
-df=pd.read_csv('../usa population_streamlit/us-population-2010-2019.csv',index_col=0)
+df=pd.read_csv('us-population-2010-2019.csv',index_col=0)
 
 
 col1,col2,col3=st.columns([0.25,0.5,0.25])
